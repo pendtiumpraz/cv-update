@@ -14,13 +14,19 @@
       --border: #2a2a3e;
       --text: #e8e8f0;
       --text-muted: #8888a0;
-      --accent: #6c5ce7;
-      --accent-2: #a29bfe;
+      --accent: #c9a84c;
+      --accent-2: #e8c96a;
+      --accent-3: #8B4513;
       --green: #00cec9;
       --orange: #fd9644;
       --blue: #45aaf2;
+      --gold: #d4a853;
+      --gold-light: #f0d68a;
+      --emerald: #2d8a4e;
       --radius: 12px;
     }
+
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -30,11 +36,39 @@
       color: var(--text);
       line-height: 1.6;
       padding: 40px 20px;
+      position: relative;
+      overflow-x: hidden;
     }
+
+    /* Batik pattern overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 0C17.9 0 0 17.9 0 40s17.9 40 40 40 40-17.9 40-40S62.1 0 40 0zm0 72c-17.6 0-32-14.4-32-32s14.4-32 32-32 32 14.4 32 32-14.4 32-32 32z' fill='%23c9a84c' opacity='0.03'/%3E%3Ccircle cx='40' cy='40' r='8' fill='%23c9a84c' opacity='0.04'/%3E%3C/svg%3E");
+      background-size: 80px 80px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Kawung-inspired corner decorations */
+    .corner-deco {
+      position: fixed;
+      z-index: 0;
+      opacity: 0.06;
+      pointer-events: none;
+    }
+    .corner-deco.tl { top: -40px; left: -40px; }
+    .corner-deco.br { bottom: -40px; right: -40px; transform: rotate(180deg); }
 
     .container {
       max-width: 1000px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
 
     /* === HEADER === */
@@ -43,18 +77,41 @@
       align-items: center;
       gap: 40px;
       padding: 40px;
-      background: var(--surface);
+      background: linear-gradient(135deg, var(--surface) 0%, #1a1520 100%);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       margin-bottom: 24px;
       flex-wrap: wrap;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(201,168,76,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--emerald));
     }
 
     .avatar {
       width: 120px;
       height: 120px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      background: linear-gradient(135deg, var(--accent), var(--gold-light));
       display: flex;
       align-items: center;
       justify-content: center;
@@ -62,6 +119,25 @@
       font-weight: 700;
       color: #fff;
       flex-shrink: 0;
+      border: 3px solid rgba(201,168,76,0.3);
+      position: relative;
+      box-shadow: 0 0 30px rgba(201,168,76,0.15);
+    }
+
+    .avatar::after {
+      content: '☿';
+      position: absolute;
+      bottom: -2px;
+      right: -2px;
+      width: 32px;
+      height: 32px;
+      background: var(--emerald);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      border: 2px solid var(--bg);
     }
 
     .header-info { flex: 1; min-width: 240px; }
@@ -71,18 +147,34 @@
       font-weight: 800;
       letter-spacing: -0.5px;
       margin-bottom: 4px;
+      background: linear-gradient(135deg, var(--gold-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .header-info .title {
       font-size: 18px;
-      color: var(--accent-2);
+      color: var(--gold);
       font-weight: 500;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+    }
+
+    .header-info .title::before {
+      content: '~ ';
+    }
+    .header-info .title::after {
+      content: ' ~';
     }
 
     .header-info .tagline {
       color: var(--text-muted);
       font-size: 14px;
+    }
+
+    .header-links a i, .header-links span i {
+      font-style: normal;
     }
 
     .header-links {
@@ -120,7 +212,7 @@
     .stat-card .num {
       font-size: 28px;
       font-weight: 800;
-      background: linear-gradient(135deg, var(--accent-2), var(--green));
+      background: linear-gradient(135deg, var(--gold-light), var(--accent));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
@@ -147,18 +239,25 @@
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 2px;
-      color: var(--accent-2);
+      color: var(--gold-light);
       margin-bottom: 24px;
       display: flex;
       align-items: center;
       gap: 10px;
+      position: relative;
+    }
+
+    .section-title::before {
+      content: '◈';
+      font-size: 12px;
+      color: var(--gold);
     }
 
     .section-title::after {
       content: '';
       flex: 1;
       height: 1px;
-      background: var(--border);
+      background: linear-gradient(90deg, var(--accent) 0%, var(--border) 100%);
     }
 
     /* === PROJECT CARD === */
@@ -182,6 +281,10 @@
     .project-name {
       font-size: 18px;
       font-weight: 600;
+    }
+
+    .project-name a {
+      color: var(--gold-light);
     }
 
     .project-name a {
@@ -366,6 +469,41 @@
   </style>
 </head>
 <body>
+  <div class="corner-deco tl">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0h200v200" fill="none"/>
+      <path d="M20 20h30v30H20z" fill="%23c9a84c" opacity="0.3"/>
+      <path d="M20 65h30v30H20z" fill="%23c9a84c" opacity="0.2"/>
+      <path d="M65 20h30v30H65z" fill="%23c9a84c" opacity="0.2"/>
+      <path d="M20 110h30v30H20z" fill="%23c9a84c" opacity="0.1"/>
+      <path d="M65 65h30v30H65z" fill="%23c9a84c" opacity="0.15"/>
+      <path d="M110 20h30v30h-30z" fill="%23c9a84c" opacity="0.1"/>
+      <!-- Kawung circle motif -->
+      <circle cx="50" cy="50" r="15" fill="none" stroke="%23c9a84c" stroke-width="1" opacity="0.2"/>
+      <circle cx="50" cy="50" r="6" fill="%23c9a84c" opacity="0.15"/>
+      <circle cx="95" cy="50" r="15" fill="none" stroke="%23c9a84c" stroke-width="1" opacity="0.15"/>
+      <circle cx="50" cy="95" r="15" fill="none" stroke="%23c9a84c" stroke-width="1" opacity="0.15"/>
+    </svg>
+  </div>
+  <div class="corner-deco br">
+    <svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Batik parang-inspired diagonal lines -->
+      <g opacity="0.08">
+        <path d="M0 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M20 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M40 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M60 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M80 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M100 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M120 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M140 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M160 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M180 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+        <path d="M200 200l40-40" stroke="%23c9a84c" stroke-width="2"/>
+      </g>
+    </svg>
+  </div>
+
   <div class="container">
 
     <!-- HEADER -->
