@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galih Prasetyo — CV</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --surface-2: #1a1a2e;
+      --border: #2a2a3e;
+      --text: #e8e8f0;
+      --text-muted: #8888a0;
+      --accent: #6c5ce7;
+      --accent-2: #a29bfe;
+      --green: #00cec9;
+      --orange: #fd9644;
+      --blue: #45aaf2;
+      --radius: 12px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 40px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    /* === HEADER === */
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      padding: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .header-info { flex: 1; min-width: 240px; }
+
+    .header-info h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .header-info .title {
+      font-size: 18px;
+      color: var(--accent-2);
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .header-info .tagline {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .header-links {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .header-links a {
+      color: var(--accent-2);
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    .header-links a:hover { color: #fff; }
+
+    /* === STATS ROW === */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .stat-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+    }
+
+    .stat-card .num {
+      font-size: 28px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent-2), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .stat-card .label {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* === SECTION === */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent-2);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* === PROJECT CARD === */
+    .project {
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .project:last-child { border-bottom: none; padding-bottom: 0; }
+    .project:first-child { padding-top: 0; }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .project-name {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .project-name a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .project-name a:hover { color: var(--accent-2); }
+
+    .project-stack {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      padding: 2px 10px;
+      border-radius: 20px;
+      background: var(--surface-2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+    }
+
+    .tag.ts { border-color: #3178c6; color: #3178c6; }
+    .tag.php { border-color: #777bb3; color: #777bb3; }
+    .tag.laravel { border-color: #f05340; color: #f05340; }
+    .tag.nextjs { border-color: #fff; color: #fff; }
+    .tag.ai { border-color: var(--accent-2); color: var(--accent-2); }
+    .tag.pwa { border-color: var(--green); color: var(--green); }
+
+    .project-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin: 6px 0 10px;
+      line-height: 1.7;
+    }
+
+    .project-desc ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .project-desc ul li {
+      position: relative;
+      padding-left: 16px;
+      margin-bottom: 4px;
+    }
+
+    .project-desc ul li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    .project-url {
+      display: inline-block;
+      font-size: 12px;
+      color: var(--accent-2);
+      text-decoration: none;
+      margin-top: 4px;
+    }
+
+    .project-url:hover { text-decoration: underline; }
+
+    /* === SKILLS === */
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    .skill-group { flex: 1; min-width: 180px; }
+
+    .skill-group h4 {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .skill-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .skill-items span {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+    }
+
+    /* === TIMELINE === */
+    .timeline-item {
+      padding-left: 20px;
+      border-left: 2px solid var(--border);
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .timeline-item::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      left: -6px;
+      top: 4px;
+    }
+
+    .timeline-item:last-child { margin-bottom: 0; }
+
+    .timeline-item .org {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-2);
+    }
+
+    .timeline-item .role {
+      font-size: 16px;
+      font-weight: 500;
+      margin: 2px 0;
+    }
+
+    .timeline-item .period {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .timeline-item .desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.6;
+    }
+
+    /* === CONTACT STRIP === */
+    .contact-strip {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      padding: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-top: 20px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .contact-strip a {
+      color: var(--accent-2);
+      text-decoration: none;
+    }
+
+    .contact-strip a:hover { color: #fff; }
+
+    /* === PRINT === */
+    @media print {
+      body { padding: 0; background: #fff; }
+      * { color: #111 !important; -webkit-text-fill-color: #111 !important; }
+      .header, .section, .contact-strip, .stat-card {
+        background: #f5f5f5 !important;
+        border-color: #ddd !important;
+      }
+      .tag { background: #eee !important; border-color: #ccc !important; }
+      .stat-card .num { -webkit-text-fill-color: #6c5ce7 !important; }
+    }
+
+    @media (max-width: 600px) {
+      .header { flex-direction: column; text-align: center; padding: 24px; }
+      .header-links { align-items: center; }
+      .contact-strip { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <div class="avatar">GP</div>
+      <div class="header-info">
+        <h1>Galih Prasetyo</h1>
+        <div class="title">Senior Full-Stack Developer & Enterprise Architect</div>
+        <div class="tagline">📍 Malang, Indonesia · Lead Developer at Portament · 13+ years building digital products</div>
+      </div>
+      <div class="header-links">
+        <span>🐙 <a href="https://github.com/pendtiumpraz" target="_blank">github.com/pendtiumpraz</a></span>
+        <span>🔗 <a href="https://linkedin.com/in/pendtiumpraz" target="_blank">linkedin.com/in/pendtiumpraz</a></span>
+        <span>🏢 <a href="https://opsguide.cloud" target="_blank">opsguide.cloud</a></span>
+        <span>📧 pendtiumpraz@gmail.com</span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="num">318</div>
+        <div class="label">Public Repos</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">13+</div>
+        <div class="label">Years Coding</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">10+</div>
+        <div class="label">Languages</div>
+      </div>
+      <div class="stat-card">
+        <div class="num">∞</div>
+        <div class="label">AI Agent Workflows</div>
+      </div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="section">
+      <div class="section-title">Tentang Saya</div>
+      <p style="color: var(--text-muted); font-size: 14px; line-height: 1.8;">
+        Senior Full-Stack Developer & Enterprise Architect dari Malang dengan pengalaman lebih dari 13 tahun.
+        Saat ini Lead Full-Stack Developer di <strong>Portament Corporation</strong> membangun <strong>OpsGuide.cloud</strong>.
+        Sebelumnya menangani proyek skala nasional: <strong>KemenKopUKM.go.id</strong> (Kementerian Koperasi & UKM RI),
+        <strong>RumahPekerja.id</strong> (Platform Pekerja Nasional), Toyota Manufacturing, dan SoftBank Robotics.
+        Founder platform dakwah digital <strong>Blitar Mengaji</strong> serta arsitek di balik <strong>Sainskerta Labs</strong>,
+        platform AI agentic untuk pendidikan dan kreativitas. Aktif di GitHub dengan 318+ repositori publik:
+        TypeScript/Next.js, PHP/Laravel, multi-model AI (DeepSeek, OpenAI, Anthropic, Gemini).
+      </p>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section">
+      <div class="section-title">Proyek Unggulan</div>
+
+      <div class="project">
+        <div class="project-header">
+          <div class="project-name">
+            <a href="https://github.com/pendtiumpraz/ai-labs" target="_blank">🤖 Sainskerta Labs</a>
+          </div>
+          <div class="project-stack">
+            <span class="tag ts">TypeScript</span>
+            <span class="tag nextjs">Next.js</span>
+            <span class="tag ai">AI</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Platform AI agentic untuk siswa, pendidik, dan kreator di Indonesia.
+          <ul>
+            <li>Curated prompt catalog dengan enkripsi & tiering (free / one-time / subscription)</li>
+            <li>Multi-agent workflow engine — orchestration (parallel, branch, loop) & autonomous (tool-calling loop, maxTurns)</li>
+            <li>Vibecoding: browser IDE dengan WebContainers (zero server-side execution)</li>
+            <li>SSE streaming, credit system, dynamic payment multi-gateway</li>
+            <li>DeepSeek by default, multi-provider fallback (OpenAI, Anthropic, Gemini, dll)</li>
+          </ul>
+        </div>
+        <a class="project-url" href="https://labs.sainskerta.net" target="_blank">🔗 labs.sainskerta.net</a>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div class="project-name">
+            <a href="https://github.com/pendtiumpraz/blitarmengaji" target="_blank">🕌 Blitar Mengaji</a>
+          </div>
+          <div class="project-stack">
+            <span class="tag ts">TypeScript</span>
+            <span class="tag nextjs">Next.js</span>
+            <span class="tag pwa">PWA</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Platform informasi kajian, transparansi keuangan & ekosistem dakwah digital se-Blitar Raya.
+          Melayani umat sejak 2019. Mobile-first PWA + APK.
+          <ul>
+            <li>Peta dakwah interaktif (Leaflet + OSM), jadwal kajian & rekaman</li>
+            <li>Transparansi keuangan masjid dengan laporan PDF</li>
+            <li>Donasi per titik dakwah + QRIS + konfirmasi WhatsApp</li>
+            <li>Kelas online, perpustakaan PDF, event/webinar, UMKM (Lapak)</li>
+            <li>Tanya AI multi-provider dengan RAG + sitasi sumber</li>
+            <li>RBAC dinamis: Admin, Ustadz, Pengelola Entitas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div class="project-name">
+            <a href="https://github.com/pendtiumpraz/ssn2" target="_blank">🏢 Sainskerta Solusi Nusantara (SSN)</a>
+          </div>
+          <div class="project-stack">
+            <span class="tag ts">TypeScript</span>
+            <span class="tag nextjs">Next.js</span>
+            <span class="tag laravel">Prisma</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Fullstack enterprise platform monorepo dengan Next.js App Router, Prisma ORM, Auth.js v5,
+          multi-language (i18n), Tailwind CSS, Radix UI, dan integrasi AI yang ekstensif.
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div class="project-name">
+            <a href="https://github.com/pendtiumpraz/priva-back" target="_blank">🔐 PRIVASIMU NEXUS — PDP Compliance Platform</a>
+          </div>
+          <div class="project-stack">
+            <span class="tag php">PHP 8.3</span>
+            <span class="tag laravel">Laravel 12</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Multi-tenant PDP (Perlindungan Data Pribadi) compliance platform. Menangani kepatuhan
+          privasi data untuk berbagai organisasi.
+          <ul>
+            <li>3-tier tenancy: shared landlord DB, dedicated hosted DB, atau client-provided DB</li>
+            <li>Role hierarchy: root > superadmin > admin > dpo > maker > viewer</li>
+            <li>6 modul compliance: ROPA, DPIA, DSR, Consent, Breach, Data-Discovery — satu controller universal</li>
+            <li>AI Agent: DB-mutating tool calls melalui AiAgentToolExecutor org-scoped</li>
+            <li>Pool Registry untuk manajemen cluster Postgres/MySQL dan S3 storage</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div class="project-name">
+            <a href="https://github.com/pendtiumpraz/flik" target="_blank">🎬 FLiK — OTT Film Streaming Platform</a>
+          </div>
+          <div class="project-stack">
+            <span class="tag php">PHP 8.3</span>
+            <span class="tag laravel">Laravel 12</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Platform streaming film OTT (Over-The-Top) dengan fitur lengkap:
+          <ul>
+            <li>AI assistant untuk rekomendasi konten</li>
+            <li>Sistem gamification & subscription</li>
+            <li>Aplikasi mobile NativePHP</li>
+            <li>Manajemen konten, user, dan pembayaran</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="project">
+        <div class="project-header">
+          <div class="project-name">
+            <a href="https://github.com/pendtiumpraz/apprenticeship-matcher" target="_blank">📚 AI Solutions Hub (125+ AI Templates)</a>
+          </div>
+          <div class="project-stack">
+            <span class="tag ai">AI</span>
+            <span class="tag">Template</span>
+          </div>
+        </div>
+        <div class="project-desc">
+          Ekosistem template AI siap pakai — mencakup Apprenticeship Matcher, Interview Prep Coach,
+          Resume Optimizer, Trade Documentation Assistant, Skill Assessment Platform, Radiology
+          Image Analyzer — multi-API support (Gemini, GPT, Groq, DeepSeek), real-time analytics,
+          image generation, TTS, multi-format export.
+        </div>
+      </div>
+    </div>
+
+    <!-- SKILLS -->
+    <div class="section">
+      <div class="section-title">Keahlian Teknis</div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h4>Frontend</h4>
+          <div class="skill-items">
+            <span>React/Next.js</span>
+            <span>TypeScript</span>
+            <span>Tailwind CSS</span>
+            <span>Radix UI</span>
+            <span>PWA</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>Backend</h4>
+          <div class="skill-items">
+            <span>PHP/Laravel</span>
+            <span>Node.js</span>
+            <span>Prisma</span>
+            <span>REST API</span>
+            <span>Auth.js</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>AI & Data</h4>
+          <div class="skill-items">
+            <span>LLM Integration</span>
+            <span>RAG</span>
+            <span>Agent Workflows</span>
+            <span>DeepSeek</span>
+            <span>OpenAI</span>
+            <span>Claude</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h4>DevOps & Tools</h4>
+          <div class="skill-items">
+            <span>Docker</span>
+            <span>CI/CD</span>
+            <span>Vercel</span>
+            <span>Git</span>
+            <span>Prisma</span>
+            <span>PostgreSQL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section">
+      <div class="section-title">Pengalaman</div>
+
+      <div class="timeline-item">
+        <div class="org">Portament Corporation</div>
+        <div class="role">Lead Full-Stack Developer</div>
+        <div class="period">Sekarang</div>
+        <div class="desc">
+          Membangun <strong>OpsGuide.cloud</strong> — platform cloud-native operasional enterprise.
+          Arsitektur fullstack modern dengan AI integration, multi-tenancy, dan sistem pembayaran
+          multi-gateway.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="org">KemenKopUKM.go.id</div>
+        <div class="role">Full-Stack Developer</div>
+        <div class="period">Project-based</div>
+        <div class="desc">
+          Mengembangkan platform digital untuk Kementerian Koperasi dan UKM Republik Indonesia.
+          Sistem skala nasional melayani koperasi dan UKM di seluruh Indonesia.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="org">RumahPekerja.id</div>
+        <div class="role">Full-Stack Developer</div>
+        <div class="period">Project-based</div>
+        <div class="desc">
+          Platform Pekerja Nasional — sistem manajemen tenaga kerja dan lowongan pekerjaan
+          berskala nasional.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="org">Toyota Manufacturing / SoftBank Robotics</div>
+        <div class="role">Software Developer</div>
+        <div class="period">Project-based</div>
+        <div class="desc">
+          Berkontribusi pada proyek software di lingkungan manufaktur Toyota dan robotika
+          SoftBank Robotics.
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="org">Sainskerta (Sainskerta.net & Labs)</div>
+        <div class="role">Founder & AI Architect</div>
+        <div class="period">2019 — Sekarang</div>
+        <div class="desc">
+          Ekosistem produk digital: <strong>Sainskerta Labs</strong> (platform AI agentic dengan
+          multi-agent orchestration, vibecoding, payment multi-gateway) dan <strong>Blitar Mengaji</strong>
+          (platform dakwah digital se-Blitar Raya — melayani umat sejak 2019 dengan fitur kajian,
+          transparansi keuangan, donasi, kelas online, dan AI RAG).
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="org">Open Source & Freelance</div>
+        <div class="role">Fullstack Developer</div>
+        <div class="period">2013 — Sekarang</div>
+        <div class="desc">
+          13+ tahun pengalaman dengan 318 repositori publik di GitHub. Ekosistem teknologi:
+          TypeScript, JavaScript, Next.js, React, PHP/Laravel, Python, Go, Dart, Kotlin.
+          Domain: AI/LLM, compliance/privacy, fintech, edtech, dakwah digital, enterprise systems.
+        </div>
+      </div>
+    </div>
+
+    <!-- ACHIEVEMENTS -->
+    <div class="section">
+      <div class="section-title">Pencapaian</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+        <div style="background: var(--surface-2); border-radius: 8px; padding: 16px; border: 1px solid var(--border);">
+          <div style="font-size: 24px; margin-bottom: 4px;">🚀</div>
+          <div style="font-size: 14px; font-weight: 600;">Sainskerta Labs</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Platform AI agentic production — multi-agent orchestration, vibecoding, payment gateway</div>
+        </div>
+        <div style="background: var(--surface-2); border-radius: 8px; padding: 16px; border: 1px solid var(--border);">
+          <div style="font-size: 24px; margin-bottom: 4px;">🕌</div>
+          <div style="font-size: 14px; font-weight: 600;">Blitar Mengaji</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Platform dakwah digital — melayani Blitar Raya sejak 2019, RBAC multi-level, AI RAG</div>
+        </div>
+        <div style="background: var(--surface-2); border-radius: 8px; padding: 16px; border: 1px solid var(--border);">
+          <div style="font-size: 24px; margin-bottom: 4px;">🧠</div>
+          <div style="font-size: 14px; font-weight: 600;">AI Multi-Provider</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Integrasi DeepSeek, OpenAI, Anthropic, Gemini dalam satu platform dengan fallback</div>
+        </div>
+        <div style="background: var(--surface-2); border-radius: 8px; padding: 16px; border: 1px solid var(--border);">
+          <div style="font-size: 24px; margin-bottom: 4px;">📊</div>
+          <div style="font-size: 14px; font-weight: 600;">318 Repos</div>
+          <div style="font-size: 12px; color: var(--text-muted);">13+ tahun open source — berbagai stack, berbagai domain, semua publik</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-strip">
+      <span>🐙 <a href="https://github.com/pendtiumpraz" target="_blank">github.com/pendtiumpraz</a></span>
+      <span>🔗 <a href="https://linkedin.com/in/pendtiumpraz" target="_blank">linkedin.com/in/pendtiumpraz</a></span>
+      <span>🌐 <a href="https://opsguide.cloud" target="_blank">opsguide.cloud</a></span>
+      <span>🏢 <a href="https://sainskerta.net" target="_blank">sainskerta.net</a></span>
+      <span>📧 pendtiumpraz@gmail.com</span>
+      <span>📍 Malang, Indonesia</span>
+    </div>
+
+  </div>
+</body>
+</html>
